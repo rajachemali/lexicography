@@ -1,0 +1,37 @@
+//Print 4 characteres per line in a lexicographic manner (starting with AAAA until DDDD). Only A, B, C, and D are allowed.,
+// Condition 1: character ‘B’ must always be followed by "A" 
+// Condition 2: A sequence can't contain both A and D in it.
+
+public class Lexi{
+public static void main(String[] args) {
+String s = "AAAA";
+int count = 0;
+StringBuilder ss = new StringBuilder(s);
+char c0 = ss.charAt(0); 
+for(int i = 0; i < 4; i++){
+ss = ss.replace(0, 1, Character.toString(c0++)); 
+char c1 = ss.charAt(1);
+for(int j = 0; j < 4; j++){
+ss = ss.replace(1, 2, Character.toString(c1++));
+char c2 = ss.charAt(2);
+for(int k = 0; k < 4; k++){
+ss = ss.replace(2, 3, Character.toString(c2++));
+char c3 = ss.charAt(3);
+for(int l = 0; l < 4; l++){
+ss = ss.replace(3, 4, Character.toString(c3++));
+if(ss.toString().contains("B")){
+if(!ss.toString().contains("BA") || ss.toString().contains("BB")
+|| ss.toString().contains("BC") || ss.toString().contains("BD") || ss.charAt(3) == 'B')
+continue; }
+if(ss.toString().contains("D") && ss.toString().contains("A")) continue;
+System.out.println(ss);
+count++; }
+ss.replace(3, 4, "A"); 
+}
+ss.replace(2, 3, "A"); }
+ss.replace(1, 2, "A"); }
+System.out.println("Count: " + count);
+ 
+}
+    
+}
